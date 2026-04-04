@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laravel</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .dark .glass {
+            background: rgba(17, 24, 39, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Reading Progress Bar (Global) -->
+    <div class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-purple-600 to-indigo-500 z-[1001] w-0 transition-all duration-150" id="reading-progress"></div>
+
+    <header class="fixed top-0 left-0 w-full z-[1000]">
+    <!-- Main Navbar -->
+    <div class="px-4 py-6 md:px-12 md:py-8 lg:px-20 max-w-fh mx-auto">
+        <div
+            class="glass dark:bg-gray-900/90 border border-white/40 dark:border-gray-800/50 rounded-[2.5rem] px-6 md:px-10 py-4 shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative z-[1001]">
+            <div class="flex justify-between items-center h-12">
+                <!-- Logo -->
+                <a href="https://bagvault.com" class="flex items-center space-x-3 group cursor-pointer">
+                    <div
+                        class="w-10 h-10 bg-gray-900 dark:bg-white rounded-2xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+                        <span class="text-white dark:text-gray-900 font-black italic text-xl font-display">B</span>
+                    </div>
+                    <span
+                        class="text-xl font-black tracking-tighter text-gray-900 dark:text-white uppercase italic font-display">Bonnie
+                        Bags</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center space-x-12">
+
+                    <a href="https://bagvault.com"
+                        class="text-sm font-black uppercase tracking-widest text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors italic">Home</a>
+                    <a href="https://bagvault.com/blogs"
+                        class="text-sm font-black uppercase tracking-widest text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors italic">Blogs</a>
+                    
+                    <a href="https://bagvault.com/contact"
+                        class="text-sm font-black uppercase tracking-widest text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors italic">Contact</a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <!-- Theme Toggle -->
+                    <button onclick="toggleDarkMode()"
+                        class="p-3 rounded-2xl text-gray-500 hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95">
+                        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                            </path>
+                        </svg>
+                        <svg class="w-5 h-5 hidden dark:block text-purple-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                            </path>
+                        </svg>
+                    </button>
+
+                    
+
+                    <!-- Mobile Hamburger -->
+                    <button onclick="toggleMobileMenu()"
+                        class="md:hidden p-3 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-2xl active:scale-90 transition-all relative z-[1002]">
+                        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Mobile Overlay -->
+    <div id="mobile-nav"
+        class="fixed inset-0 bg-white dark:bg-gray-950 z-[999] translate-y-[-100%] transition-transform duration-500 ease-in-out md:hidden flex flex-col justify-center px-10">
+        <div class="space-y-10">
+
+            <a href="https://bagvault.com"
+                class="block text-5xl sm:text-6xl font-black text-gray-900 dark:text-white italic tracking-tighter hover:text-purple-600 transition-colors uppercase font-display">Home</a>
+            <a href="https://bagvault.com/blogs"
+                class="block text-5xl sm:text-6xl font-black text-gray-900 dark:text-white italic tracking-tighter hover:text-purple-600 transition-colors uppercase font-display">Blogs</a>
+            
+            <a href="https://bagvault.com/contact"
+                class="block text-5xl sm:text-6xl font-black text-gray-900 dark:text-white italic tracking-tighter hover:text-purple-600 transition-colors uppercase font-display">Contact</a>
+        </div>
+        
+    </div>
+</header>
+
+<script>
+    function toggleMobileMenu() {
+        const nav = document.getElementById('mobile-nav');
+        const path = document.getElementById('menu-path');
+        const isClosed = nav.classList.contains('translate-y-[-100%]');
+
+        if (isClosed) {
+            nav.classList.remove('translate-y-[-100%]');
+            path.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            document.body.style.overflow = 'hidden';
+        } else {
+            nav.classList.add('translate-y-[-100%]');
+            path.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    function toggleMobileCollection() {
+        const menu = document.getElementById('collection-submenu');
+        const icon = document.getElementById('collection-icon');
+
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            menu.classList.add('flex');
+            icon.classList.add('rotate-180');
+        } else {
+            menu.classList.add('hidden');
+            menu.classList.remove('flex');
+            icon.classList.remove('rotate-180');
+        }
+    }
+</script>
+
+    <main>
+            <!-- Hero Section: Ultra Premium Split Design -->
+    <!-- Ultra-Premium Hero Section -->
+    <section class="min-h-[100vh] pt-32 pb-32 relative overflow-hidden bg-white dark:bg-gray-950 flex items-center justify-center border-b border-gray-100 dark:border-gray-900">
+        <!-- Dramatic Cinematic Background -->
+        <div class="absolute inset-0 w-full h-full z-0 pointer-events-none group">
+            <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=2400&q=80"
+                alt="Premium Luxury Handbag"
+                class="w-full h-full object-cover grayscale opacity-20 dark:opacity-[0.15] scale-105 group-hover:scale-100 group-hover:opacity-30 dark:group-hover:opacity-20 transition-all duration-[20s] ease-out">
+            <!-- Lighting gradients -->
+            <div class="absolute inset-x-0 bottom-0 h-[60vh] bg-gradient-to-t from-white via-white/80 dark:from-gray-950 dark:via-gray-950/80 to-transparent"></div>
+            <div class="absolute inset-y-0 right-0 w-[40vw] bg-gradient-to-l from-white via-white/60 dark:from-gray-950 dark:via-gray-950/60 to-transparent"></div>
+        </div>
+
+        <!-- Hero Content Overlay -->
+        <div class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 w-full relative z-30 mt-20">
+            <div class="text-center max-w-[900px] mx-auto flex flex-col items-center">
+                
+                <!-- Tag -->
+                <div class="inline-flex items-center space-x-3 mb-10 overflow-hidden rounded-full p-1 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border border-gray-200 dark:border-gray-800 shadow-sm animate-fade-in-up">
+                    <span class="bg-purple-600 text-white px-5 py-2 rounded-full text-[9px] font-black uppercase tracking-[0.3em]">Exclsuive</span>
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 pr-4 italic">Timeless Craftsmanship</span>
+                </div>
+
+                <!-- Main Headline -->
+                <h1 class="text-5xl md:text-7xl lg:text-[7.5rem] font-black text-gray-900 dark:text-white leading-[0.9] tracking-tighter mb-10 uppercase italic font-display drop-shadow-2xl">
+                    Discover the <br>
+                    <span class="relative inline-block mt-4">
+                        <span class="absolute -inset-2 bg-purple-600/10 dark:bg-purple-900/40 blur-2xl rounded-full"></span>
+                        <span class="relative bg-clip-text text-transparent bg-gradient-to-r from-purple-700 via-purple-500 to-indigo-500 underline decoration-gray-200 dark:decoration-gray-800 decoration-4 underline-offset-[16px]">Art of Style</span>
+                    </span>
+                </h1>
+
+                <!-- Subheadline -->
+                <p class="text-lg md:text-2xl text-gray-600 dark:text-gray-400 mb-14 max-w-2xl leading-[1.8] italic font-medium">
+                    Explore curated collections of the worlds finest designer bags, where artisan craftsmanship meets timeless aesthetic elegance. 
+                </p>
+
+                <!-- Actions -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto">
+                    <a href="https://bagvault.com/collection" class="group relative px-12 py-6 bg-gray-950 dark:bg-white text-white dark:text-gray-950 rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_40px_-15px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 transition-all duration-300 w-full sm:w-auto text-center">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <span class="relative text-[11px] font-black uppercase tracking-[0.4em] z-10 text-white dark:text-gray-950 group-hover:text-white transition-colors duration-300">Explore Collection</span>
+                    </a>
+                    
+                    <a href="#" class="px-12 py-6 bg-transparent text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.4em] hover:bg-gray-50 dark:hover:bg-gray-900 transition-all active:scale-95 w-full sm:w-auto text-center hover:border-purple-500">
+                        Read Editorials
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Floating Image Detail Card -->
+            <div class="mt-24 lg:mt-32 relative mx-auto max-w-[1000px]">
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent blur-3xl -z-10 rounded-[4rem]"></div>
+                <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=1200&q=80" alt="Artisan Leather Craftsmanship" class="w-full aspect-[21/9] object-cover rounded-[3rem] shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000 border-4 border-white dark:border-gray-900">
+            </div>
+        </div>
+    </section>
+
+    <!-- Refined Stats Bar -->
+    <section class="max-w-[1200px] mx-auto px-6 sm:px-12 relative z-40 -mt-20">
+        <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl rounded-[3rem] p-4 lg:p-6 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-white dark:border-gray-800">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 divide-x-0 md:divide-x border-gray-100 dark:divide-gray-800">
+                                    <div class="py-8 text-center group cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-2xl transition-colors">
+                        <div class="text-4xl md:text-5xl font-black text-gray-950 dark:text-white tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-500 group-hover:text-purple-600 font-display italic">
+                            15K+
+                        </div>
+                        <div class="text-[9px] font-black uppercase tracking-[0.4em] text-gray-400 italic">
+                            Collectors
+                        </div>
+                    </div>
+                                    <div class="py-8 text-center group cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-2xl transition-colors">
+                        <div class="text-4xl md:text-5xl font-black text-gray-950 dark:text-white tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-500 group-hover:text-purple-600 font-display italic">
+                            120+
+                        </div>
+                        <div class="text-[9px] font-black uppercase tracking-[0.4em] text-gray-400 italic">
+                            Reviews
+                        </div>
+                    </div>
+                                    <div class="py-8 text-center group cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-2xl transition-colors">
+                        <div class="text-4xl md:text-5xl font-black text-gray-950 dark:text-white tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-500 group-hover:text-purple-600 font-display italic">
+                            45+
+                        </div>
+                        <div class="text-[9px] font-black uppercase tracking-[0.4em] text-gray-400 italic">
+                            Brands
+                        </div>
+                    </div>
+                                    <div class="py-8 text-center group cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-2xl transition-colors">
+                        <div class="text-4xl md:text-5xl font-black text-gray-950 dark:text-white tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-500 group-hover:text-purple-600 font-display italic">
+                            100%
+                        </div>
+                        <div class="text-[9px] font-black uppercase tracking-[0.4em] text-gray-400 italic">
+                            Authenticity
+                        </div>
+                    </div>
+                            </div>
+        </div>
+    </section>
+
+    <div class="max-w-[1400px] mx-auto mt-20 pt-10 pb-20 border-b border-gray-100 dark:border-gray-900 overflow-hidden">
+        <div class="flex items-center justify-center gap-16 md:gap-32 opacity-40 dark:opacity-30 grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer">
+                            <span class="text-3xl lg:text-4xl font-black tracking-tighter text-gray-900 dark:text-white leading-none italic font-display hover:text-purple-600 transition-colors">HERMES</span>
+                            <span class="text-3xl lg:text-4xl font-black tracking-tighter text-gray-900 dark:text-white leading-none italic font-display hover:text-purple-600 transition-colors">CHANEL</span>
+                            <span class="text-3xl lg:text-4xl font-black tracking-tighter text-gray-900 dark:text-white leading-none italic font-display hover:text-purple-600 transition-colors">GUCCI</span>
+                            <span class="text-3xl lg:text-4xl font-black tracking-tighter text-gray-900 dark:text-white leading-none italic font-display hover:text-purple-600 transition-colors">DIOR</span>
+                            <span class="text-3xl lg:text-4xl font-black tracking-tighter text-gray-900 dark:text-white leading-none italic font-display hover:text-purple-600 transition-colors">PRADA</span>
+                    </div>
+    </div>
+
+    <!-- Categories: Editorial Grid Design -->
+    <section class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 py-20">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-32 gap-12">
+            <div>
+                <span
+                    class="text-purple-600 font-black uppercase tracking-[0.3em] text-[10px] mb-4 inline-block italic">Curation</span>
+                <h2
+                    class="text-6xl font-black tracking-tighter italic text-gray-900 dark:text-white leading-none uppercase font-display">
+                    Bag Categories</h2>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 font-medium italic max-w-sm text-right leading-relaxed">
+                Exploring the pinnacle of artisan leather excellence with in-depth guides and reviews.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
+            <!-- Main Feature Side Card -->
+            <div
+                class="col-span-1 lg:col-span-1 bg-purple-600 dark:bg-purple-700 rounded-[3rem] p-16 flex flex-col justify-between group overflow-hidden relative shadow-2xl shadow-purple-500/20">
+                <div class="relative z-10">
+                    <span
+                        class="text-[10px] font-black tracking-widest uppercase text-purple-200 mb-6 inline-block italic">New
+                        Arrivals</span>
+                    <h3 class="text-2xl font-black mb-8 leading-tight text-white tracking-tighter uppercase font-display">
+                        Italian
+                        Craft
+                    </h3>
+                    <p class="text-purple-100 text-sm italic mb-12 font-medium leading-relaxed">Discover the latest
+                        bold designs in luxury handcrafted leather goods.</p>
+                    <button
+                        class="bg-white text-purple-600 px-10 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl active:scale-95">Explore
+                        Library</button>
+                </div>
+                <div
+                    class="absolute -right-16 -bottom-16 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000">
+                </div>
+            </div>
+
+            <!-- Categoric Grid (Premium Cards) -->
+            <div class="col-span-1 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-12">
+                                                    <a href="https://bagvault.com/category-detail"
+                        class="block group relative bg-white dark:bg-gray-900 rounded-[3rem] overflow-hidden shadow-sm hover:shadow-[0_40px_100px_rgba(0,0,0,0.1)] transition-all duration-700 border border-gray-100 dark:border-gray-800 h-72">
+                        <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&amp;q=80" alt="Designer Totes"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent p-10 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span
+                                class="text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] mb-3 italic opacity-0 group-hover:opacity-100 transition-opacity duration-700 font-display">04 Collections</span>
+                            <h4
+                                class="text-2xl font-black text-white leading-tight tracking-tighter italic uppercase drop-shadow-md font-display">
+                                Designer Totes</h4>
+                        </div>
+                    </a>
+                                    <a href="#"
+                        class="block group relative bg-white dark:bg-gray-900 rounded-[3rem] overflow-hidden shadow-sm hover:shadow-[0_40px_100px_rgba(0,0,0,0.1)] transition-all duration-700 border border-gray-100 dark:border-gray-800 h-72">
+                        <img src="https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600&amp;q=80" alt="Evening Clutches"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent p-10 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span
+                                class="text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] mb-3 italic opacity-0 group-hover:opacity-100 transition-opacity duration-700 font-display">08 Collections</span>
+                            <h4
+                                class="text-2xl font-black text-white leading-tight tracking-tighter italic uppercase drop-shadow-md font-display">
+                                Evening Clutches</h4>
+                        </div>
+                    </a>
+                                    <a href="#"
+                        class="block group relative bg-white dark:bg-gray-900 rounded-[3rem] overflow-hidden shadow-sm hover:shadow-[0_40px_100px_rgba(0,0,0,0.1)] transition-all duration-700 border border-gray-100 dark:border-gray-800 h-72">
+                        <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=600&amp;q=80" alt="Vintage Classics"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent p-10 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span
+                                class="text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] mb-3 italic opacity-0 group-hover:opacity-100 transition-opacity duration-700 font-display">12 Collections</span>
+                            <h4
+                                class="text-2xl font-black text-white leading-tight tracking-tighter italic uppercase drop-shadow-md font-display">
+                                Vintage Classics</h4>
+                        </div>
+                    </a>
+                                    <a href="#"
+                        class="block group relative bg-white dark:bg-gray-900 rounded-[3rem] overflow-hidden shadow-sm hover:shadow-[0_40px_100px_rgba(0,0,0,0.1)] transition-all duration-700 border border-gray-100 dark:border-gray-800 h-72">
+                        <img src="https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?w=600&amp;q=80" alt="Minimalist Crossbody"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent p-10 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span
+                                class="text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] mb-3 italic opacity-0 group-hover:opacity-100 transition-opacity duration-700 font-display">15 Collections</span>
+                            <h4
+                                class="text-2xl font-black text-white leading-tight tracking-tighter italic uppercase drop-shadow-md font-display">
+                                Minimalist Crossbody</h4>
+                        </div>
+                    </a>
+                            </div>
+        </div>
+    </section>
+
+    <!-- Handbag Reviews: Architectural Cards -->
+    <section class="bg-gray-50 dark:bg-gray-950/50 py-20 border-y border-gray-100 dark:border-gray-900 rounded-[5rem] ">
+        <div class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 text-center mb-32">
+            <h2
+                class="text-7xl font-black mb-8 tracking-tighter italic text-gray-900 dark:text-white uppercase leading-none font-display">
+                Featured Reviews</h2>
+            <p
+                class="text-gray-500 dark:text-gray-400 font-medium italic max-w-2xl mx-auto text-lg leading-relaxed uppercase tracking-[0.1em] opacity-60">
+                In-Depth Leather Goods Analysis</p>
+        </div>
+
+        <div class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
+                                        <div
+                    class="group bg-white dark:bg-gray-900 p-8 rounded-[4rem] border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-[0_50px_100px_rgba(0,0,0,0.1)] transition-all duration-700 hover:-translate-y-4 flex flex-col justify-between">
+                    <div class="relative h-[22rem] rounded-[3.5rem] overflow-hidden mb-12 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1594897030264-ab7d87efc473?w=600&amp;q=80" alt="Handbag Product"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+                        <div
+                            class="absolute top-6 left-6 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl dark:text-white text-gray-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl font-display">
+                            Investment Guide</div>
+                    </div>
+                    <div class="px-6">
+                        <div
+                            class="flex items-center space-x-3 text-[10px] font-black text-purple-500 uppercase tracking-[0.3em] mb-6 italic">
+                            <span>Bestseller</span>
+                            <span class="w-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></span>
+                            <span>Expert Choice</span>
+                        </div>
+                        <h3
+                            class="text-3xl font-black text-gray-900 dark:text-white mb-3 leading-[1.1] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
+                            Mastering the Birkin</h3>
+                        <p
+                            class="text-gray-500 mb-3 dark:text-gray-400 text-sm font-medium italic leading-relaxed line-clamp-2">
+                            A comprehensive look into the craftsmanship, history, and market value of this iconic designer bag collection.</p>
+                        <div class="flex items-center justify-between  border-t border-gray-50 dark:border-gray-800">
+                            <div class="flex items-center space-x-5">
+                                <div class="relative">
+                                    <img src="https://i.pravatar.cc/150?u=author-0" alt="Author"
+                                        class="w-12 h-12 rounded-[1.5rem] grayscale group-hover:grayscale-0 transition-all duration-500 ring-4 ring-gray-50 dark:ring-gray-800 shadow-lg">
+                                    <div
+                                        class="absolute -right-1 -bottom-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900">
+                                    </div>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs font-black text-gray-900 dark:text-white uppercase italic tracking-tighter leading-none mb-1.5">
+                                        Julian Vaine</p>
+                                    <p
+                                        class="text-[9px] text-gray-400 font-bold uppercase tracking-widest italic leading-none">
+                                        Head of Editorial</p>
+                                </div>
+                            </div>
+                            <button
+                                class="bg-purple-600 text-white p-4 rounded-2xl shadow-xl shadow-purple-500/20 hover:bg-gray-900 dark:hover:bg-white dark:hover:text-gray-900 transition-all hover:scale-110 active:scale-90">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                            <div
+                    class="group bg-white dark:bg-gray-900 p-8 rounded-[4rem] border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-[0_50px_100px_rgba(0,0,0,0.1)] transition-all duration-700 hover:-translate-y-4 flex flex-col justify-between">
+                    <div class="relative h-[22rem] rounded-[3.5rem] overflow-hidden mb-12 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=600&amp;q=80" alt="Handbag Product"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+                        <div
+                            class="absolute top-6 left-6 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl dark:text-white text-gray-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl font-display">
+                            Icon Series</div>
+                    </div>
+                    <div class="px-6">
+                        <div
+                            class="flex items-center space-x-3 text-[10px] font-black text-purple-500 uppercase tracking-[0.3em] mb-6 italic">
+                            <span>Bestseller</span>
+                            <span class="w-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></span>
+                            <span>Expert Choice</span>
+                        </div>
+                        <h3
+                            class="text-3xl font-black text-gray-900 dark:text-white mb-3 leading-[1.1] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
+                            The Chanel Flap Story</h3>
+                        <p
+                            class="text-gray-500 mb-3 dark:text-gray-400 text-sm font-medium italic leading-relaxed line-clamp-2">
+                            A comprehensive look into the craftsmanship, history, and market value of this iconic designer bag collection.</p>
+                        <div class="flex items-center justify-between  border-t border-gray-50 dark:border-gray-800">
+                            <div class="flex items-center space-x-5">
+                                <div class="relative">
+                                    <img src="https://i.pravatar.cc/150?u=author-1" alt="Author"
+                                        class="w-12 h-12 rounded-[1.5rem] grayscale group-hover:grayscale-0 transition-all duration-500 ring-4 ring-gray-50 dark:ring-gray-800 shadow-lg">
+                                    <div
+                                        class="absolute -right-1 -bottom-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900">
+                                    </div>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs font-black text-gray-900 dark:text-white uppercase italic tracking-tighter leading-none mb-1.5">
+                                        Julian Vaine</p>
+                                    <p
+                                        class="text-[9px] text-gray-400 font-bold uppercase tracking-widest italic leading-none">
+                                        Head of Editorial</p>
+                                </div>
+                            </div>
+                            <button
+                                class="bg-purple-600 text-white p-4 rounded-2xl shadow-xl shadow-purple-500/20 hover:bg-gray-900 dark:hover:bg-white dark:hover:text-gray-900 transition-all hover:scale-110 active:scale-90">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                            <div
+                    class="group bg-white dark:bg-gray-900 p-8 rounded-[4rem] border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-[0_50px_100px_rgba(0,0,0,0.1)] transition-all duration-700 hover:-translate-y-4 flex flex-col justify-between">
+                    <div class="relative h-[22rem] rounded-[3.5rem] overflow-hidden mb-12 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=600&amp;q=80" alt="Handbag Product"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+                        <div
+                            class="absolute top-6 left-6 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl dark:text-white text-gray-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl font-display">
+                            Buyer Guide</div>
+                    </div>
+                    <div class="px-6">
+                        <div
+                            class="flex items-center space-x-3 text-[10px] font-black text-purple-500 uppercase tracking-[0.3em] mb-6 italic">
+                            <span>Bestseller</span>
+                            <span class="w-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></span>
+                            <span>Expert Choice</span>
+                        </div>
+                        <h3
+                            class="text-3xl font-black text-gray-900 dark:text-white mb-3 leading-[1.1] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
+                            Affordable Designer Bags</h3>
+                        <p
+                            class="text-gray-500 mb-3 dark:text-gray-400 text-sm font-medium italic leading-relaxed line-clamp-2">
+                            A comprehensive look into the craftsmanship, history, and market value of this iconic designer bag collection.</p>
+                        <div class="flex items-center justify-between  border-t border-gray-50 dark:border-gray-800">
+                            <div class="flex items-center space-x-5">
+                                <div class="relative">
+                                    <img src="https://i.pravatar.cc/150?u=author-2" alt="Author"
+                                        class="w-12 h-12 rounded-[1.5rem] grayscale group-hover:grayscale-0 transition-all duration-500 ring-4 ring-gray-50 dark:ring-gray-800 shadow-lg">
+                                    <div
+                                        class="absolute -right-1 -bottom-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900">
+                                    </div>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs font-black text-gray-900 dark:text-white uppercase italic tracking-tighter leading-none mb-1.5">
+                                        Julian Vaine</p>
+                                    <p
+                                        class="text-[9px] text-gray-400 font-bold uppercase tracking-widest italic leading-none">
+                                        Head of Editorial</p>
+                                </div>
+                            </div>
+                            <button
+                                class="bg-purple-600 text-white p-4 rounded-2xl shadow-xl shadow-purple-500/20 hover:bg-gray-900 dark:hover:bg-white dark:hover:text-gray-900 transition-all hover:scale-110 active:scale-90">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                            <div
+                    class="group bg-white dark:bg-gray-900 p-8 rounded-[4rem] border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-[0_50px_100px_rgba(0,0,0,0.1)] transition-all duration-700 hover:-translate-y-4 flex flex-col justify-between">
+                    <div class="relative h-[22rem] rounded-[3.5rem] overflow-hidden mb-12 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&amp;q=80" alt="Handbag Product"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+                        <div
+                            class="absolute top-6 left-6 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl dark:text-white text-gray-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl font-display">
+                            Heritage</div>
+                    </div>
+                    <div class="px-6">
+                        <div
+                            class="flex items-center space-x-3 text-[10px] font-black text-purple-500 uppercase tracking-[0.3em] mb-6 italic">
+                            <span>Bestseller</span>
+                            <span class="w-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></span>
+                            <span>Expert Choice</span>
+                        </div>
+                        <h3
+                            class="text-3xl font-black text-gray-900 dark:text-white mb-3 leading-[1.1] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
+                            Art of Italian Leather</h3>
+                        <p
+                            class="text-gray-500 mb-3 dark:text-gray-400 text-sm font-medium italic leading-relaxed line-clamp-2">
+                            A comprehensive look into the craftsmanship, history, and market value of this iconic designer bag collection.</p>
+                        <div class="flex items-center justify-between  border-t border-gray-50 dark:border-gray-800">
+                            <div class="flex items-center space-x-5">
+                                <div class="relative">
+                                    <img src="https://i.pravatar.cc/150?u=author-3" alt="Author"
+                                        class="w-12 h-12 rounded-[1.5rem] grayscale group-hover:grayscale-0 transition-all duration-500 ring-4 ring-gray-50 dark:ring-gray-800 shadow-lg">
+                                    <div
+                                        class="absolute -right-1 -bottom-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900">
+                                    </div>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs font-black text-gray-900 dark:text-white uppercase italic tracking-tighter leading-none mb-1.5">
+                                        Julian Vaine</p>
+                                    <p
+                                        class="text-[9px] text-gray-400 font-bold uppercase tracking-widest italic leading-none">
+                                        Head of Editorial</p>
+                                </div>
+                            </div>
+                            <button
+                                class="bg-purple-600 text-white p-4 rounded-2xl shadow-xl shadow-purple-500/20 hover:bg-gray-900 dark:hover:bg-white dark:hover:text-gray-900 transition-all hover:scale-110 active:scale-90">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                            <div
+                    class="group bg-white dark:bg-gray-900 p-8 rounded-[4rem] border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-[0_50px_100px_rgba(0,0,0,0.1)] transition-all duration-700 hover:-translate-y-4 flex flex-col justify-between">
+                    <div class="relative h-[22rem] rounded-[3.5rem] overflow-hidden mb-12 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?w=600&amp;q=80" alt="Handbag Product"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+                        <div
+                            class="absolute top-6 left-6 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl dark:text-white text-gray-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl font-display">
+                            Legendary</div>
+                    </div>
+                    <div class="px-6">
+                        <div
+                            class="flex items-center space-x-3 text-[10px] font-black text-purple-500 uppercase tracking-[0.3em] mb-6 italic">
+                            <span>Bestseller</span>
+                            <span class="w-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></span>
+                            <span>Expert Choice</span>
+                        </div>
+                        <h3
+                            class="text-3xl font-black text-gray-900 dark:text-white mb-3 leading-[1.1] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
+                            Kelly Bag History</h3>
+                        <p
+                            class="text-gray-500 mb-3 dark:text-gray-400 text-sm font-medium italic leading-relaxed line-clamp-2">
+                            A comprehensive look into the craftsmanship, history, and market value of this iconic designer bag collection.</p>
+                        <div class="flex items-center justify-between  border-t border-gray-50 dark:border-gray-800">
+                            <div class="flex items-center space-x-5">
+                                <div class="relative">
+                                    <img src="https://i.pravatar.cc/150?u=author-4" alt="Author"
+                                        class="w-12 h-12 rounded-[1.5rem] grayscale group-hover:grayscale-0 transition-all duration-500 ring-4 ring-gray-50 dark:ring-gray-800 shadow-lg">
+                                    <div
+                                        class="absolute -right-1 -bottom-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900">
+                                    </div>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs font-black text-gray-900 dark:text-white uppercase italic tracking-tighter leading-none mb-1.5">
+                                        Julian Vaine</p>
+                                    <p
+                                        class="text-[9px] text-gray-400 font-bold uppercase tracking-widest italic leading-none">
+                                        Head of Editorial</p>
+                                </div>
+                            </div>
+                            <button
+                                class="bg-purple-600 text-white p-4 rounded-2xl shadow-xl shadow-purple-500/20 hover:bg-gray-900 dark:hover:bg-white dark:hover:text-gray-900 transition-all hover:scale-110 active:scale-90">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                            <div
+                    class="group bg-white dark:bg-gray-900 p-8 rounded-[4rem] border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-[0_50px_100px_rgba(0,0,0,0.1)] transition-all duration-700 hover:-translate-y-4 flex flex-col justify-between">
+                    <div class="relative h-[22rem] rounded-[3.5rem] overflow-hidden mb-12 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600&amp;q=80" alt="Handbag Product"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+                        <div
+                            class="absolute top-6 left-6 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl dark:text-white text-gray-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl font-display">
+                            Mastery</div>
+                    </div>
+                    <div class="px-6">
+                        <div
+                            class="flex items-center space-x-3 text-[10px] font-black text-purple-500 uppercase tracking-[0.3em] mb-6 italic">
+                            <span>Bestseller</span>
+                            <span class="w-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></span>
+                            <span>Expert Choice</span>
+                        </div>
+                        <h3
+                            class="text-3xl font-black text-gray-900 dark:text-white mb-3 leading-[1.1] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
+                            Hermes Selection</h3>
+                        <p
+                            class="text-gray-500 mb-3 dark:text-gray-400 text-sm font-medium italic leading-relaxed line-clamp-2">
+                            A comprehensive look into the craftsmanship, history, and market value of this iconic designer bag collection.</p>
+                        <div class="flex items-center justify-between  border-t border-gray-50 dark:border-gray-800">
+                            <div class="flex items-center space-x-5">
+                                <div class="relative">
+                                    <img src="https://i.pravatar.cc/150?u=author-5" alt="Author"
+                                        class="w-12 h-12 rounded-[1.5rem] grayscale group-hover:grayscale-0 transition-all duration-500 ring-4 ring-gray-50 dark:ring-gray-800 shadow-lg">
+                                    <div
+                                        class="absolute -right-1 -bottom-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900">
+                                    </div>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs font-black text-gray-900 dark:text-white uppercase italic tracking-tighter leading-none mb-1.5">
+                                        Julian Vaine</p>
+                                    <p
+                                        class="text-[9px] text-gray-400 font-bold uppercase tracking-widest italic leading-none">
+                                        Head of Editorial</p>
+                                </div>
+                            </div>
+                            <button
+                                class="bg-purple-600 text-white p-4 rounded-2xl shadow-xl shadow-purple-500/20 hover:bg-gray-900 dark:hover:bg-white dark:hover:text-gray-900 transition-all hover:scale-110 active:scale-90">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+    </section>
+
+    <!-- Upcoming Events: High Impact Banner -->
+    <section class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 py-20">
+        <div
+            class="bg-gray-950 dark:bg-white py-40 md:py-56 rounded-[5rem] text-white dark:text-gray-950 text-center relative overflow-hidden group shadow-2xl">
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-transparent to-indigo-500/10 z-0"></div>
+            <div
+                class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[150px] animate-pulse">
+            </div>
+
+            <div class="relative z-10 max-w-4xl mx-auto px-6">
+                <span
+                    class="text-purple-400 dark:text-purple-600 font-black uppercase tracking-[0.5em] text-[10px] mb-10 inline-block italic border-y border-white/10 dark:border-gray-900/10 py-2">Exclusive
+                    Events</span>
+                <h2
+                    class="text-6xl md:text-8xl font-black mb-12 tracking-tighter italic uppercase leading-none drop-shadow-2xl font-display">
+                    Auction Highlights</h2>
+                <p
+                    class="text-gray-400 dark:text-gray-500 italic max-w-2xl mx-auto mb-20 text-xl font-medium leading-relaxed uppercase tracking-wider opacity-80">
+                    Join us for the most anticipated fashion events and private trunk show previews.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left max-w-2xl mx-auto">
+                    <button
+                        class="bg-white/5 hover:bg-white dark:bg-gray-50 hover:dark:bg-purple-600 group/btn p-8 rounded-[3rem] border border-white/10 dark:border-gray-200 transition-all duration-500">
+                        <div
+                            class="text-purple-400 group-hover/btn:text-gray-900 text-[10px] font-black uppercase mb-4 tracking-widest italic">
+                            April 15, 2026</div>
+                        <h4
+                            class="text-2xl font-black italic tracking-tight leading-tight group-hover/btn:text-gray-900 dark:group-hover/btn:text-white uppercase transition-colors font-display">
+                            The Leather Artisan Gala</h4>
+                    </button>
+                    <button
+                        class="bg-white/5 hover:bg-white dark:bg-gray-50 hover:dark:bg-purple-600 group/btn p-8 rounded-[3rem] border border-white/10 dark:border-gray-200 transition-all duration-500">
+                        <div
+                            class="text-purple-400 group-hover/btn:text-gray-900 text-[10px] font-black uppercase mb-4 tracking-widest italic">
+                            May 02, 2026</div>
+                        <h4
+                            class="text-2xl font-black italic tracking-tight leading-tight group-hover/btn:text-gray-900 dark:group-hover/btn:text-white uppercase transition-colors font-display">
+                            Paris Fashion Week</h4>
+                    </button>
+                </div>
+
+                <div class="mt-20">
+                    <button
+                        class="bg-white dark:bg-gray-950 text-gray-950 dark:text-white px-16 py-6 rounded-[2.5rem] font-black uppercase text-xs tracking-[0.5em] hover:scale-110 active:scale-95 transition-all shadow-2xl">See
+                        Full Calendar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials: Ultra Refined Cards -->
+    <section class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 py-20 relative overflow-hidden">
+        <div class="text-center mb-40 relative z-10">
+            <h2
+                class="text-7xl font-black mb-6 tracking-tighter italic text-gray-900 dark:text-white uppercase leading-none font-display">
+                Global <span class="text-purple-600">Influence</span></h2>
+            <p class="text-gray-400 italic font-black uppercase tracking-[0.5em] text-[10px]">Voices of the Community</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-24 relative z-10">
+                            <div
+                    class="bg-white dark:bg-gray-900 p-20 rounded-[4.5rem] border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-[0_60px_120px_rgba(0,0,0,0.12)] transition-all duration-1000 relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <svg class="w-16 h-16 transform rotate-12" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H14.017C13.4647 8 13.017 8.44772 13.017 9V15C13.017 15.5523 12.5693 16 12.017 16H11.017L11.017 19C11.017 20.1046 10.1224 21 9.017 21H5.017C3.91243 21 3.017 20.1046 3.017 19V9C3.017 7.89543 3.91243 7 5.017 7H10.017C10.5693 7 11.017 7.44772 11.017 8V11C11.017 11.5523 11.4647 12 12.017 12H13.017L13.017 15C13.017 16.1046 13.9124 17 15.017 17H19.017L19.017 21H14.017Z" />
+                        </svg>
+                    </div>
+
+                    <div class="mb-12 flex space-x-1.5 text-purple-500 scale-125 origin-left">
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                            </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg font-medium italic mb-12 leading-[1.9]">"Bonnie
+                        Bags is a breath of fresh air. The level of detail in their reviews and the aesthetic quality of
+                        their craftsmanship curation is unmatched."</p>
+
+                    <div class="flex items-center space-x-6">
+                        <img src="https://i.pravatar.cc/150?u=Sebastian Rossi" alt="Sebastian Rossi"
+                            class="w-16 h-16 rounded-[2rem] shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div>
+                            <h4
+                                class="text-xl font-black text-gray-900 dark:text-white tracking-tighter italic uppercase leading-none font-display">
+                                Sebastian Rossi</h4>
+                            <p class="text-[9px] font-black text-purple-500 uppercase tracking-[0.4em] mt-2 italic">
+                                Collector</p>
+                        </div>
+                    </div>
+                </div>
+                            <div
+                    class="bg-white dark:bg-gray-900 p-20 rounded-[4.5rem] border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-[0_60px_120px_rgba(0,0,0,0.12)] transition-all duration-1000 relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <svg class="w-16 h-16 transform rotate-12" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H14.017C13.4647 8 13.017 8.44772 13.017 9V15C13.017 15.5523 12.5693 16 12.017 16H11.017L11.017 19C11.017 20.1046 10.1224 21 9.017 21H5.017C3.91243 21 3.017 20.1046 3.017 19V9C3.017 7.89543 3.91243 7 5.017 7H10.017C10.5693 7 11.017 7.44772 11.017 8V11C11.017 11.5523 11.4647 12 12.017 12H13.017L13.017 15C13.017 16.1046 13.9124 17 15.017 17H19.017L19.017 21H14.017Z" />
+                        </svg>
+                    </div>
+
+                    <div class="mb-12 flex space-x-1.5 text-purple-500 scale-125 origin-left">
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                            </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg font-medium italic mb-12 leading-[1.9]">"Bonnie
+                        Bags is a breath of fresh air. The level of detail in their reviews and the aesthetic quality of
+                        their craftsmanship curation is unmatched."</p>
+
+                    <div class="flex items-center space-x-6">
+                        <img src="https://i.pravatar.cc/150?u=Evelyn Gray" alt="Evelyn Gray"
+                            class="w-16 h-16 rounded-[2rem] shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div>
+                            <h4
+                                class="text-xl font-black text-gray-900 dark:text-white tracking-tighter italic uppercase leading-none font-display">
+                                Evelyn Gray</h4>
+                            <p class="text-[9px] font-black text-purple-500 uppercase tracking-[0.4em] mt-2 italic">
+                                Fashion Editor</p>
+                        </div>
+                    </div>
+                </div>
+                            <div
+                    class="bg-white dark:bg-gray-900 p-20 rounded-[4.5rem] border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-[0_60px_120px_rgba(0,0,0,0.12)] transition-all duration-1000 relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <svg class="w-16 h-16 transform rotate-12" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H14.017C13.4647 8 13.017 8.44772 13.017 9V15C13.017 15.5523 12.5693 16 12.017 16H11.017L11.017 19C11.017 20.1046 10.1224 21 9.017 21H5.017C3.91243 21 3.017 20.1046 3.017 19V9C3.017 7.89543 3.91243 7 5.017 7H10.017C10.5693 7 11.017 7.44772 11.017 8V11C11.017 11.5523 11.4647 12 12.017 12H13.017L13.017 15C13.017 16.1046 13.9124 17 15.017 17H19.017L19.017 21H14.017Z" />
+                        </svg>
+                    </div>
+
+                    <div class="mb-12 flex space-x-1.5 text-purple-500 scale-125 origin-left">
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                                    <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                                            </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg font-medium italic mb-12 leading-[1.9]">"Bonnie
+                        Bags is a breath of fresh air. The level of detail in their reviews and the aesthetic quality of
+                        their craftsmanship curation is unmatched."</p>
+
+                    <div class="flex items-center space-x-6">
+                        <img src="https://i.pravatar.cc/150?u=Marcus Thorne" alt="Marcus Thorne"
+                            class="w-16 h-16 rounded-[2rem] shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div>
+                            <h4
+                                class="text-xl font-black text-gray-900 dark:text-white tracking-tighter italic uppercase leading-none font-display">
+                                Marcus Thorne</h4>
+                            <p class="text-[9px] font-black text-purple-500 uppercase tracking-[0.4em] mt-2 italic">
+                                Curator</p>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+    </section>
+
+    <style>
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .animate-float {
+            animation: float 10s ease-in-out infinite;
+        }
+    </style>
+    </main>
+
+    <footer class="bg-white dark:bg-gray-950 pt-32 pb-16 text-gray-900 dark:text-white border-t border-gray-100 dark:border-gray-900 mt-24">
+    <div class="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-20 pb-20 border-b border-gray-100 dark:border-gray-900 mb-12">
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center space-x-3 mb-8">
+                    <div class="w-10 h-10 bg-gray-950 dark:bg-white rounded-xl flex items-center justify-center transform hover:rotate-12 transition-transform duration-300">
+                        <span class="text-white dark:text-gray-950 font-black italic text-xl leading-none font-display">B</span>
+                    </div>
+                    <span class="text-2xl font-black tracking-tighter text-gray-900 dark:text-white italic uppercase font-display">Bonnie Bags</span>
+                </div>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-[1.8] mb-10 font-medium italic">
+                    Exploring the world of luxury handbags and artisan leathercraft with in-depth guides and reviews.
+                </p>
+                <div class="flex space-x-5">
+                                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-950 dark:hover:bg-white text-gray-400 hover:text-white dark:hover:text-gray-950 transition-all duration-300 group">
+                        <span class="text-xs font-black uppercase">𝕏</span>
+                    </a>
+                                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-950 dark:hover:bg-white text-gray-400 hover:text-white dark:hover:text-gray-950 transition-all duration-300 group">
+                        <span class="text-xs font-black uppercase">ln</span>
+                    </a>
+                                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-950 dark:hover:bg-white text-gray-400 hover:text-white dark:hover:text-gray-950 transition-all duration-300 group">
+                        <span class="text-xs font-black uppercase">fb</span>
+                    </a>
+                                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-950 dark:hover:bg-white text-gray-400 hover:text-white dark:hover:text-gray-950 transition-all duration-300 group">
+                        <span class="text-xs font-black uppercase">ig</span>
+                    </a>
+                                    </div>
+            </div>
+            
+            <div>
+                <h4 class="font-black text-xs uppercase tracking-[0.3em] mb-10 text-gray-400 italic">Explore</h4>
+                <ul class="space-y-6 text-sm font-bold">
+                    <li><a href="https://bagvault.com/collection" class="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors italic">Bag Collection</a></li>
+                    <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors italic">Expert Reviews</a></li>
+                    <li><a href="https://bagvault.com/blogs" class="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors italic">The Journal</a></li>
+                    <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors italic">Artisan Guides</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-black text-xs uppercase tracking-[0.3em] mb-10 text-gray-400 italic">Support</h4>
+                <ul class="space-y-6 text-sm font-bold">
+                    <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white transition-colors italic">Help Center</a></li>
+                    <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white transition-colors italic">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white transition-colors italic">Terms of Service</a></li>
+                    <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-gray-950 dark:hover:text-white transition-colors italic">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-50 dark:bg-gray-900/50 p-8 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 transition-all">
+                <h4 class="font-black text-xs uppercase tracking-[0.3em] mb-6 text-gray-900 dark:text-white italic font-display">Newsletter</h4>
+                <p class="text-[10px] uppercase font-black tracking-widest text-gray-400 mb-8 italic leading-relaxed">Stay updated with the latest in tech.</p>
+                <form class="space-y-4">
+                    <div class="relative">
+                        <input type="email" placeholder="Email Address" class="w-full bg-white dark:bg-black border-2 border-gray-100 dark:border-gray-800 rounded-[1.5rem] px-6 py-4 text-sm focus:ring-1 focus:ring-purple-600 focus:border-purple-600 dark:focus:border-purple-500 transition-all outline-none italic font-bold">
+                    </div>
+                    <button type="submit" class="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-950 py-4 rounded-[1.5rem] text-[10px] font-extrabold uppercase tracking-[0.2em] hover:scale-[1.02] transition-all active:scale-95 shadow-xl">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-center text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 italic">
+            <div class="mb-4 md:mb-0">© 2026 BONNIE BAGS EDITORIAL</div>
+            <div class="flex space-x-8">
+                <a href="#" class="hover:text-gray-900 dark:hover:text-white transition-colors">DESIGNED BY AI</a>
+                <a href="#" class="hover:text-gray-900 dark:hover:text-white transition-colors">BUILT WITH LARAVEL</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Dark mode toggle logic
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark')
+                localStorage.theme = 'light'
+            } else {
+                document.documentElement.classList.add('dark')
+                localStorage.theme = 'dark'
+            }
+        }
+
+        // Reading Progress Script (Global)
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement;
+            const scrollTotal = h.scrollHeight - h.clientHeight;
+            const progress = (h.scrollTop / scrollTotal) * 100;
+            const progressBar = document.getElementById('reading-progress');
+            if (progressBar) {
+                progressBar.style.width = scrollTotal > 0 ? progress + "%" : "0%";
+            }
+        });
+    </script>
+</body>
+</html>
