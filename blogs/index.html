@@ -1,19 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- SEO Technical Fixes -->
     <link rel="canonical" href="https://bagvaults.com/blogs" />
-    <link rel="alternate" hreflang="en" href="https://bagvaults.com/blogs" />
-    <link rel="alternate" hreflang="x-default" href="https://bagvaults.com/blogs" />
-    
-    <!-- Robots Meta (Default Index/Follow) -->
-            <meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
-    
         <meta name="robots" content="FOLLOW, INDEX, MAX-SNIPPET:-1, MAX-VIDEO-PREVIEW:-1, MAX-IMAGE-PREVIEW:LARGE">
-    <title>Bag Vaults</title>
+        <meta property="og:title" content="BagVaults Blog | Luxury Bag Trends & Tips">
+        <meta property="og:description"
+            content="Explore the latest luxury bag trends and expert styling tips on BagVaults Blog. Stay ahead in fashion. Learn More.">
+
+        
+        
+        <!-- Schema Metadata -->
+        <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "The Bag Journal",
+      "url": "https://bagvaults.com/blogs",
+      "description": "Curated stories from the world of luxury handbags and artisan leathercraft.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Bag Vault",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://bagvaults.com/logo.png"
+        }
+      }
+    }
+    </script>
+
+        <!-- Breadcrumb Schema -->
+        <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://bagvaults.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blogs",
+          "item": "https://bagvaults.com/blogs"
+        }
+      ]
+    }
+    </script>
+        <title>The Bag Journal | Bag Vaults</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -29,24 +68,62 @@
         }
     </script>
     <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
         .glass {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
+
         .dark .glass {
             background: rgba(17, 24, 39, 0.7);
         }
     </style>
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Site-Wide Schema (Organization & Search) "logo": "https://bagvaults.com/logo.png", -->
+    <script type="application/ld+json">
+ 
+  {
+   "@context": "https://schema.org",
+   "@type": "Organization",
+   "name": "Bag Vault",
+   "url": "https://bagvaults.com/blogs",
+   "logo": "https://via.placeholder.com/150x50?text=Logo",
+   "contactPoint": {
+     "@type": "ContactPoint",
+     "telephone": "+1-250-980-4722",
+     "contactType": "customer service",
+     "email": "info@bagvault.com",
+     "areaServed": "CA",
+     "availableLanguage": "English"
+   },
+   "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "1328 Water Street",
+     "addressLocality": "Kelowna",
+     "addressRegion": "BC",
+     "postalCode": "V1Y 0J4",
+     "addressCountry": "CA"
+   },
+   "sameAs": [
+     "https://www.facebook.com/bagvaults",
+     "https://www.instagram.com/bagvaults"
+   ]
+ }
+    </script>
     </head>
+
 <body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
     <!-- Reading Progress Bar (Global) -->
-    <div class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-purple-600 to-indigo-500 z-[1001] w-0 transition-all duration-150" id="reading-progress"></div>
+    <div class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-purple-600 to-indigo-500 z-[1001] w-0 transition-all duration-150"
+        id="reading-progress"></div>
 
     <header class="fixed top-0 left-0 w-full z-[1000]">
     <!-- Main Navbar -->
@@ -159,7 +236,8 @@
 </script>
 
     <main>
-            <!-- Blog Hero Section (Refined Editorial Style) -->
+            
+    <!-- Blog Hero Section (Refined Editorial Style) -->
     <section class="pt-48 pb-32 bg-white dark:bg-gray-950 overflow-hidden relative">
         <!-- Background Elements -->
         <div class="absolute top-0 right-0 w-1/3 h-full bg-purple-500/5 blur-[120px] -z-10 animate-pulse"></div>
@@ -172,8 +250,7 @@
                         class="inline-block bg-purple-50/50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-10 italic border border-purple-100 dark:border-purple-900/50 uppercase"
                         data-aos="fade-down">Editorial
                         Insights</span>
-                    <h1
-                        class="text-6xl md:text-9xl font-black text-gray-900 dark:text-white leading-[0.85] tracking-tighter uppercase italic font-display"
+                    <h1 class="text-6xl md:text-9xl font-black text-gray-900 dark:text-white leading-[0.85] tracking-tighter uppercase italic font-display"
                         data-aos="fade-up" data-aos-delay="200">
                         The <span class="text-purple-500">Bag </span><br>Journal
                     </h1>
@@ -189,13 +266,11 @@
             </div>
 
             <!-- Featured Post Highlight -->
-            <div
-                class="group relative bg-gray-50 dark:bg-gray-900 rounded-[5rem] overflow-hidden border border-gray-100 dark:border-gray-800 shadow-2xl"
+            <div class="group relative bg-gray-50 dark:bg-gray-900 rounded-[5rem] overflow-hidden border border-gray-100 dark:border-gray-800 shadow-2xl"
                 data-aos="fade-up" data-aos-delay="400">
                 <div class="grid grid-cols-1 lg:grid-cols-2">
                     <div class="relative h-[400px] lg:h-[600px] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=1600&q=80"
-                            alt="Featured Post"
+                        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=1600&q=80" alt="Featured Post"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-2000">
                         <div class="absolute inset-0 bg-gradient-to-r from-gray-950/20 to-transparent"></div>
                     </div>
@@ -231,30 +306,6 @@
         class="bg-white dark:bg-gray-950 sticky top-28 z-40 border-y border-gray-50 dark:border-gray-900 backdrop-blur-md bg-white/80 dark:bg-gray-950/80">
         <div class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 py-8 flex flex-wrap items-center justify-between gap-8">
             <div class="flex items-center space-x-8 overflow-x-auto pb-2 scrollbar-hide">
-                                    <button
-                        class="whitespace-nowrap text-[10px] font-black uppercase tracking-[0.3em] italic text-purple-600 border-b-2 border-purple-600 hover:text-purple-500 transition-colors pb-2">
-                        All Stories
-                    </button>
-                                    <button
-                        class="whitespace-nowrap text-[10px] font-black uppercase tracking-[0.3em] italic text-gray-400 hover:text-purple-500 transition-colors pb-2">
-                        Leather-Craft
-                    </button>
-                                    <button
-                        class="whitespace-nowrap text-[10px] font-black uppercase tracking-[0.3em] italic text-gray-400 hover:text-purple-500 transition-colors pb-2">
-                        Collecting
-                    </button>
-                                    <button
-                        class="whitespace-nowrap text-[10px] font-black uppercase tracking-[0.3em] italic text-gray-400 hover:text-purple-500 transition-colors pb-2">
-                        Design
-                    </button>
-                                    <button
-                        class="whitespace-nowrap text-[10px] font-black uppercase tracking-[0.3em] italic text-gray-400 hover:text-purple-500 transition-colors pb-2">
-                        Trends
-                    </button>
-                                    <button
-                        class="whitespace-nowrap text-[10px] font-black uppercase tracking-[0.3em] italic text-gray-400 hover:text-purple-500 transition-colors pb-2">
-                        History
-                    </button>
                             </div>
             <div class="relative w-full md:w-auto">
                 <input type="text" placeholder="Search the journal..."
@@ -273,12 +324,12 @@
         <div class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-24">
                 
-                                    <div
-                        class="group flex flex-col lg:col-span-1 transition-all duration-700"
+                                    <div class="group flex flex-col lg:col-span-1 transition-all duration-700"
                         data-aos="fade-up" data-aos-delay="0">
                         <div
                             class="relative h-96 rounded-[4rem] overflow-hidden mb-10 shadow-2xl bg-gray-100 dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
-                            <img src="https://bagvaults.com/images/uploaded/media__1775633426305.jpg" alt="The Evolution of the Crossbody"
+                            <img src="https://bagvaults.com/"
+                                alt="What Are First Copy Bags Everything You Need To Know"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-2000 grayscale group-hover:grayscale-0">
 
                             <!-- Premium Overlay -->
@@ -288,40 +339,40 @@
 
                             <div
                                 class="absolute top-8 left-8 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl dark:text-white text-gray-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl border border-white/20 dark:border-gray-800">
-                                Design
+                                Uncategorized
                             </div>
 
                             <div
                                 class="absolute bottom-10 left-10 right-10 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                                <button
+                                <a href="https://bagvaults.com/blog/what-are-first-copy-bags-everything-you-need-to-know"
                                     class="bg-purple-600 text-white px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-2xl">Read
-                                    Article</button>
+                                    Article</a>
                             </div>
                         </div>
 
                         <div class="px-4">
                             <div
                                 class="flex items-center space-x-3 text-[10px] font-black text-purple-500 uppercase tracking-[0.3em] mb-6 italic">
-                                <span>March 28, 2026</span>
+                                <span>Apr 14, 2026</span>
                                 <span class="w-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></span>
                                 <span>Insight</span>
                             </div>
                             <h3
                                 class="text-3xl font-black text-gray-900 dark:text-white mb-6 leading-[1.05] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
-                                The Evolution of the Crossbody
+                                What Are First Copy Bags Everything You Need To Know
                             </h3>
                             <p
                                 class="text-gray-500 dark:text-gray-400 text-base font-medium italic mb-10 leading-relaxed max-w-xl">
-                                Understanding the fusion of utility and elegance that redefined modern daywear bags.
+                                What Are First Copy Bags Everything You Need to Know
                             </p>
                         </div>
                     </div>
-                                    <div
-                        class="group flex flex-col lg:col-span-2 transition-all duration-700"
+                                    <div class="group flex flex-col lg:col-span-1 transition-all duration-700"
                         data-aos="fade-up" data-aos-delay="100">
                         <div
-                            class="relative h-[500px] rounded-[4rem] overflow-hidden mb-10 shadow-2xl bg-gray-100 dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
-                            <img src="https://bagvaults.com/images/uploaded/media__1775633444716.jpg" alt="Vintage Chanel: A Roadmap"
+                            class="relative h-96 rounded-[4rem] overflow-hidden mb-10 shadow-2xl bg-gray-100 dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
+                            <img src="https://bagvaults.com/"
+                                alt="Top Branded First Copy Bags In India You Can Buy Online"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-2000 grayscale group-hover:grayscale-0">
 
                             <!-- Premium Overlay -->
@@ -331,40 +382,40 @@
 
                             <div
                                 class="absolute top-8 left-8 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl dark:text-white text-gray-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl border border-white/20 dark:border-gray-800">
-                                Collecting
+                                Uncategorized
                             </div>
 
                             <div
                                 class="absolute bottom-10 left-10 right-10 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                                <button
+                                <a href="https://bagvaults.com/blog/top-branded-first-copy-bags-in-india-you-can-buy-online"
                                     class="bg-purple-600 text-white px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-2xl">Read
-                                    Article</button>
+                                    Article</a>
                             </div>
                         </div>
 
                         <div class="px-4">
                             <div
                                 class="flex items-center space-x-3 text-[10px] font-black text-purple-500 uppercase tracking-[0.3em] mb-6 italic">
-                                <span>March 24, 2026</span>
+                                <span>Apr 14, 2026</span>
                                 <span class="w-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></span>
                                 <span>Insight</span>
                             </div>
                             <h3
-                                class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-6 leading-[1.05] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
-                                Vintage Chanel: A Roadmap
+                                class="text-3xl font-black text-gray-900 dark:text-white mb-6 leading-[1.05] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
+                                Top Branded First Copy Bags In India You Can Buy Online
                             </h3>
                             <p
                                 class="text-gray-500 dark:text-gray-400 text-base font-medium italic mb-10 leading-relaxed max-w-xl">
-                                Navigating the complex world of series numbers and leather variations in the pre-loved market.
+                                Top Branded First Copy Bags in India You Can Buy Online
                             </p>
                         </div>
                     </div>
-                                    <div
-                        class="group flex flex-col lg:col-span-1 transition-all duration-700"
+                                    <div class="group flex flex-col lg:col-span-1 transition-all duration-700"
                         data-aos="fade-up" data-aos-delay="200">
                         <div
                             class="relative h-96 rounded-[4rem] overflow-hidden mb-10 shadow-2xl bg-gray-100 dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
-                            <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=800&amp;q=80" alt="The Rise of Sustained Luxury"
+                            <img src="https://bagvaults.com/"
+                                alt="Is It Safe To Buy Replica Bags Online In India"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-2000 grayscale group-hover:grayscale-0">
 
                             <!-- Premium Overlay -->
@@ -374,40 +425,40 @@
 
                             <div
                                 class="absolute top-8 left-8 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl dark:text-white text-gray-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl border border-white/20 dark:border-gray-800">
-                                Trends
+                                Uncategorized
                             </div>
 
                             <div
                                 class="absolute bottom-10 left-10 right-10 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                                <button
+                                <a href="https://bagvaults.com/blog/is-it-safe-to-buy-replica-bags-online-in-india"
                                     class="bg-purple-600 text-white px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-2xl">Read
-                                    Article</button>
+                                    Article</a>
                             </div>
                         </div>
 
                         <div class="px-4">
                             <div
                                 class="flex items-center space-x-3 text-[10px] font-black text-purple-500 uppercase tracking-[0.3em] mb-6 italic">
-                                <span>March 20, 2026</span>
+                                <span>Apr 14, 2026</span>
                                 <span class="w-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></span>
                                 <span>Insight</span>
                             </div>
                             <h3
                                 class="text-3xl font-black text-gray-900 dark:text-white mb-6 leading-[1.05] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
-                                The Rise of Sustained Luxury
+                                Is It Safe To Buy Replica Bags Online In India
                             </h3>
                             <p
                                 class="text-gray-500 dark:text-gray-400 text-base font-medium italic mb-10 leading-relaxed max-w-xl">
-                                How independent designers are changing the silhouette of the modern tote.
+                                s It Safe to Buy Replica Bags Online in India
                             </p>
                         </div>
                     </div>
-                                    <div
-                        class="group flex flex-col lg:col-span-1 transition-all duration-700"
+                                    <div class="group flex flex-col lg:col-span-1 transition-all duration-700"
                         data-aos="fade-up" data-aos-delay="300">
                         <div
                             class="relative h-96 rounded-[4rem] overflow-hidden mb-10 shadow-2xl bg-gray-100 dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
-                            <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=800&amp;q=80" alt="Art of Exotic Leathers"
+                            <img src="https://bagvaults.com/"
+                                alt="Celebrity Luxury Bags You Can Buy As First Copy In India (2026 Guide)"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-2000 grayscale group-hover:grayscale-0">
 
                             <!-- Premium Overlay -->
@@ -417,117 +468,31 @@
 
                             <div
                                 class="absolute top-8 left-8 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl dark:text-white text-gray-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl border border-white/20 dark:border-gray-800">
-                                Leather-Craft
+                                Uncategorized
                             </div>
 
                             <div
                                 class="absolute bottom-10 left-10 right-10 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                                <button
+                                <a href="https://bagvaults.com/blog/celebrity-luxury-bags-you-can-buy-as-first-copy-in-india-2026-guide"
                                     class="bg-purple-600 text-white px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-2xl">Read
-                                    Article</button>
+                                    Article</a>
                             </div>
                         </div>
 
                         <div class="px-4">
                             <div
                                 class="flex items-center space-x-3 text-[10px] font-black text-purple-500 uppercase tracking-[0.3em] mb-6 italic">
-                                <span>March 15, 2026</span>
+                                <span>Apr 14, 2026</span>
                                 <span class="w-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></span>
                                 <span>Insight</span>
                             </div>
                             <h3
                                 class="text-3xl font-black text-gray-900 dark:text-white mb-6 leading-[1.05] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
-                                Art of Exotic Leathers
+                                Celebrity Luxury Bags You Can Buy As First Copy In India (2026 Guide)
                             </h3>
                             <p
                                 class="text-gray-500 dark:text-gray-400 text-base font-medium italic mb-10 leading-relaxed max-w-xl">
-                                A deep dive into ostrich, python, and the ethical sourcing of heritage materials.
-                            </p>
-                        </div>
-                    </div>
-                                    <div
-                        class="group flex flex-col lg:col-span-1 transition-all duration-700"
-                        data-aos="fade-up" data-aos-delay="400">
-                        <div
-                            class="relative h-96 rounded-[4rem] overflow-hidden mb-10 shadow-2xl bg-gray-100 dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
-                            <img src="https://bagvaults.com/images/uploaded/media__1775633447050.jpg" alt="Kelly Bag: The Icon Series"
-                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-2000 grayscale group-hover:grayscale-0">
-
-                            <!-- Premium Overlay -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-700">
-                            </div>
-
-                            <div
-                                class="absolute top-8 left-8 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl dark:text-white text-gray-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl border border-white/20 dark:border-gray-800">
-                                History
-                            </div>
-
-                            <div
-                                class="absolute bottom-10 left-10 right-10 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                                <button
-                                    class="bg-purple-600 text-white px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-2xl">Read
-                                    Article</button>
-                            </div>
-                        </div>
-
-                        <div class="px-4">
-                            <div
-                                class="flex items-center space-x-3 text-[10px] font-black text-purple-500 uppercase tracking-[0.3em] mb-6 italic">
-                                <span>March 10, 2026</span>
-                                <span class="w-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></span>
-                                <span>Insight</span>
-                            </div>
-                            <h3
-                                class="text-3xl font-black text-gray-900 dark:text-white mb-6 leading-[1.05] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
-                                Kelly Bag: The Icon Series
-                            </h3>
-                            <p
-                                class="text-gray-500 dark:text-gray-400 text-base font-medium italic mb-10 leading-relaxed max-w-xl">
-                                Tracing the steps of the first luxury bag celebrities made famous.
-                            </p>
-                        </div>
-                    </div>
-                                    <div
-                        class="group flex flex-col lg:col-span-2 transition-all duration-700"
-                        data-aos="fade-up" data-aos-delay="500">
-                        <div
-                            class="relative h-[500px] rounded-[4rem] overflow-hidden mb-10 shadow-2xl bg-gray-100 dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
-                            <img src="https://bagvaults.com/images/uploaded/2.jpeg" alt="The Hermès Philosophy"
-                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-2000 grayscale group-hover:grayscale-0">
-
-                            <!-- Premium Overlay -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-700">
-                            </div>
-
-                            <div
-                                class="absolute top-8 left-8 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl dark:text-white text-gray-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl border border-white/20 dark:border-gray-800">
-                                History
-                            </div>
-
-                            <div
-                                class="absolute bottom-10 left-10 right-10 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                                <button
-                                    class="bg-purple-600 text-white px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-2xl">Read
-                                    Article</button>
-                            </div>
-                        </div>
-
-                        <div class="px-4">
-                            <div
-                                class="flex items-center space-x-3 text-[10px] font-black text-purple-500 uppercase tracking-[0.3em] mb-6 italic">
-                                <span>March 05, 2026</span>
-                                <span class="w-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></span>
-                                <span>Insight</span>
-                            </div>
-                            <h3
-                                class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-6 leading-[1.05] tracking-tighter italic uppercase group-hover:text-purple-600 transition-colors font-display">
-                                The Hermès Philosophy
-                            </h3>
-                            <p
-                                class="text-gray-500 dark:text-gray-400 text-base font-medium italic mb-10 leading-relaxed max-w-xl">
-                                Exploring the artisan dedication and &quot;Saddlestitch&quot; techniques of Paris.
+                                Celebrity Luxury Bags You Can Buy as First Copy in India (2026 Guide)
                             </p>
                         </div>
                     </div>
@@ -537,57 +502,40 @@
             <div class="flex flex-col items-center space-y-12" data-aos="fade-up">
                 <div class="flex items-center space-x-6">
                     <!-- Prev -->
-                    <button
-                        class="group w-24 h-24 flex flex-col items-center justify-center rounded-[2.5rem] border-2 border-gray-100 dark:border-gray-800 text-gray-400 hover:border-purple-600 hover:text-purple-600 transition-all active:scale-90 shadow-sm bg-white dark:bg-gray-950">
-                        <svg class="w-6 h-6 transform group-hover:-translate-x-1 transition-transform mb-1" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
-                        </svg>
-                        <span
-                            class="text-[8px] font-black uppercase tracking-widest italic opacity-0 group-hover:opacity-100 transition-opacity">Prev</span>
-                    </button>
-
+                     <button disabled                             class="group w-24 h-24 flex flex-col items-center justify-center rounded-[2.5rem] border-2 border-gray-100 dark:border-gray-800 text-gray-400 hover:border-purple-600 hover:text-purple-600 transition-all active:scale-90 shadow-sm bg-white dark:bg-gray-950 opacity-50 cursor-not-allowed hover:border-gray-100 hover:text-gray-400">
+                            <svg class="w-6 h-6 transform group-hover:-translate-x-1 transition-transform mb-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+                            </svg>
+                            <span
+                                class="text-[8px] font-black uppercase tracking-widest italic opacity-0 group-hover:opacity-100 transition-opacity">Prev</span>
+                                                    </button>
+                    
                     <!-- Page Numbers -->
                     <div
                         class="flex items-center bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-xl border border-gray-100 dark:border-gray-800 p-3 rounded-[3rem] shadow-inner">
-                                                    <button
+                                                    <a href="https://bagvaults.com/blogs"
                                 class="w-16 h-16 flex items-center justify-center rounded-[1.5rem] text-[11px] font-black italic transition-all bg-purple-600 text-white shadow-xl shadow-purple-600/30">
                                 01
-                            </button>
-                                                    <button
-                                class="w-16 h-16 flex items-center justify-center rounded-[1.5rem] text-[11px] font-black italic transition-all text-gray-400 hover:text-purple-500 hover:bg-white dark:hover:bg-gray-800">
-                                02
-                            </button>
-                                                    <button
-                                class="w-16 h-16 flex items-center justify-center rounded-[1.5rem] text-[11px] font-black italic transition-all text-gray-400 hover:text-purple-500 hover:bg-white dark:hover:bg-gray-800">
-                                03
-                            </button>
-                                                <div class="px-6 flex items-center space-x-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-gray-200 dark:bg-gray-800"></span>
-                            <span class="w-1.5 h-1.5 rounded-full bg-gray-200 dark:bg-gray-800"></span>
-                        </div>
-                        <button
-                            class="w-16 h-16 flex items-center justify-center rounded-[1.5rem] text-gray-400 hover:text-purple-500 hover:bg-white dark:hover:bg-gray-800 text-[11px] font-black italic transition-all">
-                            08
-                        </button>
-                    </div>
+                            </a>
+                                                                    </div>
 
                     <!-- Next -->
-                    <button
-                        class="group w-24 h-24 flex flex-col items-center justify-center rounded-[2.5rem] border-2 border-gray-100 dark:border-gray-800 text-gray-400 hover:border-purple-600 hover:text-purple-600 transition-all active:scale-90 shadow-sm bg-white dark:bg-gray-950">
-                        <svg class="w-6 h-6 transform group-hover:translate-x-1 transition-transform mb-1" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
-                        </svg>
-                        <span
-                            class="text-[8px] font-black uppercase tracking-widest italic opacity-0 group-hover:opacity-100 transition-opacity">Next</span>
-                    </button>
-                </div>
+                     <button disabled
+                                                        class="group w-24 h-24 flex flex-col items-center justify-center rounded-[2.5rem] border-2 border-gray-100 dark:border-gray-800 text-gray-400 hover:border-purple-600 hover:text-purple-600 transition-all active:scale-90 shadow-sm bg-white dark:bg-gray-950 opacity-50 cursor-not-allowed hover:border-gray-100 hover:text-gray-400">
+                            <svg class="w-6 h-6 transform group-hover:translate-x-1 transition-transform mb-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+                            </svg>
+                            <span
+                                class="text-[8px] font-black uppercase tracking-widest italic opacity-0 group-hover:opacity-100 transition-opacity">Next</span>
+                                                    </button>
+                                    </div>
 
                 <div class="flex items-center space-x-6">
                     <span class="h-px w-16 bg-gray-100 dark:bg-gray-900"></span>
                     <p class="text-[10px] font-black uppercase tracking-[0.6em] text-gray-400 dark:text-gray-500 italic">
-                        Viewing Page 01 of 08
+                        Viewing Page 01 of 01
                     </p>
                     <span class="h-px w-16 bg-gray-100 dark:bg-gray-900"></span>
                 </div>
@@ -597,8 +545,7 @@
 
     <!-- Newsletter (Enhanced) -->
     <section class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 py-24 mb-20">
-        <div
-            class="bg-gray-950 dark:bg-white p-16 md:p-32 rounded-[6rem] text-center text-white dark:text-gray-950 relative overflow-hidden group shadow-[0_50px_100px_rgba(0,0,0,0.1)]"
+        <div class="bg-gray-950 dark:bg-white p-16 md:p-32 rounded-[6rem] text-center text-white dark:text-gray-950 relative overflow-hidden group shadow-[0_50px_100px_rgba(0,0,0,0.1)]"
             data-aos="zoom-in">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(147,51,234,0.1),transparent_50%)] z-0">
             </div>
@@ -758,7 +705,8 @@
 
     <script>
         // Dark mode toggle logic
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia(
+                '(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark')
         } else {
             document.documentElement.classList.remove('dark')
@@ -793,5 +741,6 @@
             offset: 100,
         });
     </script>
-</body>
+    </body>
+
 </html>

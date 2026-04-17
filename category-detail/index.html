@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- SEO Technical Fixes -->
     <link rel="canonical" href="https://bagvaults.com/category-detail" />
-    <link rel="alternate" hreflang="en" href="https://bagvaults.com/category-detail" />
-    <link rel="alternate" hreflang="x-default" href="https://bagvaults.com/category-detail" />
-    
-    <!-- Robots Meta (Default Index/Follow) -->
-            <meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
-    
         <meta name="robots" content="FOLLOW, INDEX, MAX-SNIPPET:-1, MAX-VIDEO-PREVIEW:-1, MAX-IMAGE-PREVIEW:LARGE">
     <title>Bag Vaults</title>
     <!-- Tailwind CSS CDN -->
@@ -29,24 +22,83 @@
         }
     </script>
     <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
         .glass {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
+
         .dark .glass {
             background: rgba(17, 24, 39, 0.7);
         }
     </style>
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    </head>
+    <!-- Site-Wide Schema (Organization & Search) "logo": "https://bagvaults.com/logo.png", -->
+    <script type="application/ld+json">
+ 
+  {
+   "@context": "https://schema.org",
+   "@type": "Organization",
+   "name": "Bag Vault",
+   "url": "https://bagvaults.com/category-detail",
+   "logo": "https://via.placeholder.com/150x50?text=Logo",
+   "contactPoint": {
+     "@type": "ContactPoint",
+     "telephone": "+1-250-980-4722",
+     "contactType": "customer service",
+     "email": "info@bagvault.com",
+     "areaServed": "CA",
+     "availableLanguage": "English"
+   },
+   "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "1328 Water Street",
+     "addressLocality": "Kelowna",
+     "addressRegion": "BC",
+     "postalCode": "V1Y 0J4",
+     "addressCountry": "CA"
+   },
+   "sameAs": [
+     "https://www.facebook.com/bagvaults",
+     "https://www.instagram.com/bagvaults"
+   ]
+ }
+    </script>
+        <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://bagvaults.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Category Detail",
+          "item": "https://bagvaults.com/category-detail"
+        }
+      ]
+    }
+    </script>
+</head>
+
 <body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
     <!-- Reading Progress Bar (Global) -->
-    <div class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-purple-600 to-indigo-500 z-[1001] w-0 transition-all duration-150" id="reading-progress"></div>
+    <div class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-purple-600 to-indigo-500 z-[1001] w-0 transition-all duration-150"
+        id="reading-progress"></div>
 
     <header class="fixed top-0 left-0 w-full z-[1000]">
     <!-- Main Navbar -->
@@ -444,7 +496,8 @@
 
     <script>
         // Dark mode toggle logic
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia(
+                '(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark')
         } else {
             document.documentElement.classList.remove('dark')
@@ -479,5 +532,6 @@
             offset: 100,
         });
     </script>
-</body>
+    </body>
+
 </html>
