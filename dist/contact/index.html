@@ -4,33 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- SEO Technical Fixes -->
     <link rel="canonical" href="https://bagvaults.com/contact" />
-    <link rel="alternate" hreflang="en" href="https://bagvaults.com/contact" />
-    <link rel="alternate" hreflang="x-default" href="https://bagvaults.com/contact" />
-
-    <!-- Robots Meta (Default Index/Follow) -->
-            <meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
-    
-    <title>Contact Us | Exclusive Support &amp; Private Inquiries - Bag Vaults</title>
-    <meta name="description" content="Have questions about our luxury bag collections? Contact Bag Vaults for private inquiries, artisan craft details, or customer support. We are here to help.">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bagvaults.com/contact">
-    <meta property="og:title" content="Contact Us | Exclusive Support &amp; Private Inquiries - Bag Vaults">
-    <meta property="og:description" content="Have questions about our luxury bag collections? Contact Bag Vaults for private inquiries, artisan craft details, or customer support. We are here to help.">
-    <meta property="og:image" content="https://bagvaults.com/images/og-image.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://bagvaults.com/contact">
-    <meta property="twitter:title" content="Contact Us | Exclusive Support &amp; Private Inquiries - Bag Vaults">
-    <meta property="twitter:description" content="Have questions about our luxury bag collections? Contact Bag Vaults for private inquiries, artisan craft details, or customer support. We are here to help.">
-    <meta property="twitter:image" content="https://bagvaults.com/images/og-image.jpg">
-
-        <!-- Tailwind CSS CDN -->
+        <meta name="robots" content="FOLLOW, INDEX, MAX-SNIPPET:-1, MAX-VIDEO-PREVIEW:-1, MAX-IMAGE-PREVIEW:LARGE">
+    <title>Bag Vaults</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -64,39 +41,58 @@
     </style>
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Site-Wide Schema (Organization & Search) "logo": "https://bagvaults.com/logo.png", -->
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Bag Vaults",
-  "image": "https://bagvaults.com/images/logo.png",
-  "@id": "https://bagvaults.com/contact",
-  "url": "https://bagvaults.com",
-  "telephone": "+919152521689",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Fort",
-    "addressLocality": "Mumbai",
-    "addressRegion": "MH",
-    "postalCode": "400001",
-    "addressCountry": "IN"
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday"
-    ],
-    "opens": "10:00",
-    "closes": "19:00"
-  }
-}
-</script>
+ 
+  {
+   "@context": "https://schema.org",
+   "@type": "Organization",
+   "name": "Bag Vault",
+   "url": "https://bagvaults.com/contact",
+   "logo": "https://via.placeholder.com/150x50?text=Logo",
+   "contactPoint": {
+     "@type": "ContactPoint",
+     "telephone": "+1-250-980-4722",
+     "contactType": "customer service",
+     "email": "info@bagvault.com",
+     "areaServed": "CA",
+     "availableLanguage": "English"
+   },
+   "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "1328 Water Street",
+     "addressLocality": "Kelowna",
+     "addressRegion": "BC",
+     "postalCode": "V1Y 0J4",
+     "addressCountry": "CA"
+   },
+   "sameAs": [
+     "https://www.facebook.com/bagvaults",
+     "https://www.instagram.com/bagvaults"
+   ]
+ }
+    </script>
+        <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://bagvaults.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "https://bagvaults.com/contact"
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
@@ -448,6 +444,6 @@
             offset: 100,
         });
     </script>
-</body>
+    </body>
 
 </html>
