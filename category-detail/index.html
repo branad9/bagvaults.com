@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="https://bagvaults.com/category-detail" />
+    <link rel="alternate" hreflang="en" href="https://bagvaults.com/category-detail" />
+    <link rel="alternate" hreflang="x-default" href="https://bagvaults.com/category-detail" />
         <meta name="robots" content="FOLLOW, INDEX, MAX-SNIPPET:-1, MAX-VIDEO-PREVIEW:-1, MAX-IMAGE-PREVIEW:LARGE">
     <title>Bag Vaults</title>
     <!-- Tailwind CSS CDN -->
@@ -40,7 +42,33 @@
     </style>
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    </head>
+            <script type="application/ld+json">
+        {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://bagvaults.com"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blogs",
+            "item": "https://bagvaults.com/blogs"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Artisan Leather",
+            "item": "https://bagvaults.com/category-detail"
+        }
+    ]
+}
+    </script>
+</head>
 
 <body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
     <!-- Reading Progress Bar (Global) -->
@@ -171,6 +199,22 @@
                 </div>
 
                 <div class="relative z-10 max-w-[1000px] mx-auto px-6 w-full mt-10 text-center md:text-left">
+                    <nav aria-label="Breadcrumb" class="mb-10 w-full" data-aos="fade-down">
+        <ol class="flex flex-wrap items-center md:justify-start justify-center space-x-3 text-[10px] font-black uppercase tracking-[0.3em] italic">
+            <li>
+                <a href="https://bagvaults.com" class="text-white/60 hover:text-white transition-colors duration-300">Home</a>
+            </li>
+                            <li class="flex items-center space-x-3">
+                    <span class="text-white/30 select-none">/</span>
+                                            <a href="https://bagvaults.com/blogs" class="text-white/60 hover:text-white transition-colors duration-300">Blogs</a>
+                                    </li>
+                            <li class="flex items-center space-x-3">
+                    <span class="text-white/30 select-none">/</span>
+                                            <span class="text-white font-black">Artisan Leather</span>
+                                    </li>
+                    </ol>
+    </nav>
+
                     <!-- Meta tags -->
                     <div
                         class="flex flex-wrap justify-center md:justify-start items-center gap-6 mb-8 text-[10px] font-black uppercase tracking-[0.3em] italic"

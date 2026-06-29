@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="https://bagvaults.com/collection" />
+    <link rel="alternate" hreflang="en" href="https://bagvaults.com/collection" />
+    <link rel="alternate" hreflang="x-default" href="https://bagvaults.com/collection" />
         <meta name="robots" content="FOLLOW, INDEX, MAX-SNIPPET:-1, MAX-VIDEO-PREVIEW:-1, MAX-IMAGE-PREVIEW:LARGE">
     <title>Bag Vaults</title>
     <!-- Tailwind CSS CDN -->
@@ -40,7 +42,27 @@
     </style>
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    </head>
+            <script type="application/ld+json">
+        {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://bagvaults.com"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Collection",
+            "item": "https://bagvaults.com/collection"
+        }
+    ]
+}
+    </script>
+</head>
 
 <body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
     <!-- Reading Progress Bar (Global) -->
@@ -160,6 +182,18 @@
         <!-- Collection Hero -->
 <section class="pt-48 pb-20 bg-white dark:bg-gray-950 transition-colors duration-500">
     <div class="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 text-center relative z-10">
+        <nav aria-label="Breadcrumb" class="mb-10 w-full" data-aos="fade-down">
+        <ol class="flex flex-wrap items-center justify-center space-x-3 text-[10px] font-black uppercase tracking-[0.3em] italic">
+            <li>
+                <a href="https://bagvaults.com" class="text-gray-400 hover:text-purple-600 dark:text-gray-500 dark:hover:text-purple-400 transition-colors duration-300">Home</a>
+            </li>
+                            <li class="flex items-center space-x-3">
+                    <span class="text-gray-300 dark:text-gray-800 select-none">/</span>
+                                            <span class="text-gray-900 dark:text-white font-black">Collection</span>
+                                    </li>
+                    </ol>
+    </nav>
+
         <span class="inline-block bg-purple-50/50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-10 italic border border-purple-100 dark:border-purple-900/50 uppercase">The Vault</span>
         <h1 class="text-6xl md:text-9xl font-black text-gray-900 dark:text-white leading-[0.85] mb-10 tracking-tighter uppercase italic font-display" data-aos="fade-up">
             Curated<br><span class="text-purple-600">Collection</span>
