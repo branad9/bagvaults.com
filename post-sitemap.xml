@@ -2,16 +2,34 @@
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
         <url>
-        <loc>https://bagvaults.com/blog/the-quiet-luxury-movement-how-minimalist-monogram-free-crossbody-bags-became-indias-ultimate-understated-status-symbol</loc>
-        <lastmod>2026-06-20T04:37:46+00:00</lastmod>
+        <loc>https://bagvaults.com/blog/baggance-chloe-cylinder-charm-barrel-bag-seo-blog</loc>
+        <lastmod>2026-11-17T06:50:44+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+                <image:image>
+            <image:loc>https://bagvaults.com/images/uploaded/chloe-cylinder-charm-barrel-bag-black-calfskin.jpg</image:loc>
+        </image:image>
+            </url>
+        <url>
+        <loc>https://bagvaults.com/blog/protecting-the-archive-why-indian-fashion-insiders-are-shifting-to-scratch-resistant-saffiano-and-nappa-leather-investment-bags</loc>
+        <lastmod>2026-11-17T06:38:09+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
             </url>
         <url>
-        <loc>https://bagvaults.com/blog/protecting-the-archive-why-indian-fashion-insiders-are-shifting-to-scratch-resistant-saffiano-and-nappa-leather-investment-bags</loc>
-        <lastmod>2026-06-20T04:37:21+00:00</lastmod>
+        <loc>https://bagvaults.com/blog/the-quiet-luxury-movement-how-minimalist-monogram-free-crossbody-bags-became-indias-ultimate-understated-status-symbol</loc>
+        <lastmod>2026-11-17T06:38:09+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+            </url>
+        <url>
+        <loc>https://bagvaults.com/blog/balenciaga-sling-medium-shoulder-bag-mustard-yellow</loc>
+        <lastmod>2026-11-17T06:34:07+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+                <image:image>
+            <image:loc>https://bagvaults.com/images/uploaded/balenciaga-sling-medium-mustard-yellow-calfskin-shoulder-bag.jpg</image:loc>
+        </image:image>
             </url>
         <url>
         <loc>https://bagvaults.com/blog/celebrity-luxury-bags-you-can-buy-as-first-copy-in-india-2026-guide</loc>
